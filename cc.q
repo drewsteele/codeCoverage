@@ -27,8 +27,9 @@
     };
 
 
-.cc.registerCall:{[fn;dummy]
+.cc.registerCall:{[fn;res]
     .cc.coverage:.cc.coverage pj ([func:(),fn]; calls:(),1);
+    :res
     };
 
 .cc.mockFunction:{[fnName]
@@ -51,6 +52,3 @@
     .cc.registerDetails each raze .cc.findFuncs each nsList;
     .cc.mockFunction each exec func from .cc.coverage;    
     };    
-
-
-

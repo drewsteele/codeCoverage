@@ -18,10 +18,16 @@
 
 .test.run:{
     tests:` sv/: `.test,/:t where (t:system["f .test"]) like "test*";
-    r:tests!@[;`;0b]each value each tests;
+    r:tests!.test.runTestWithCC each tests;
     -1"Test results:\n\n";
     -1 .Q.s r;
     :r
     };
 
+.test.runTestWithCC:{[test]
+    .cc.currentTestBeingRun:test;
+    r:@[value test;`;0b];
+    delete currentTestBeingRun from `.cc;
+    :r;
+    };
 
